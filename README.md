@@ -1,99 +1,113 @@
-# Sentiment Analysis Data Processor
+# Sentiment Analysis Application
 
-This application parses CSV files from the `Datasets` folder and stores the data in Azure Cosmos DB with an additional `location` column extracted from the filename.
+A comprehensive sentiment analysis application that combines Azure Cognitive Services with ChatGPT for advanced review analysis.
 
-## Features
+## 🚀 Features
 
-- Parses CSV files with pattern `Apple-{Location}.csv`
-- Extracts location information from filenames
-- Stores data in Azure Cosmos DB with location as partition key
-- Handles batch processing for large datasets
-- Comprehensive logging and error handling
+- **Azure Sentiment Analysis**: Traditional sentiment analysis using Azure Cognitive Services
+- **ChatGPT Integration**: AI-powered sentiment analysis with detailed insights
+- **Hybrid Approach**: Combines both Azure and ChatGPT for comprehensive analysis
+- **Cosmos DB Storage**: Scalable data storage for reviews and analysis results
+- **Web Interface**: User-friendly web interface for analysis
 
-## Prerequisites
+## 📁 Project Structure
 
+```
+SentimentAnalysis/
+├── Models/                 # Data models
+│   ├── ChatGptSentimentResult.cs
+│   ├── ChatGptSentimentSummary.cs
+│   ├── CsvReviewRecord.cs
+│   ├── ReviewData.cs
+│   ├── SentimentAnalysisResult.cs
+│   └── SentimentSummary.cs
+├── Services/               # Business logic services
+│   ├── ChatGptSentimentService.cs
+│   ├── CosmosDbService.cs
+│   ├── CsvParserService.cs
+│   └── SentimentAnalysisService.cs
+├── Datasets/              # Sample CSV data
+│   ├── Apple-Alderwood.csv
+│   ├── Apple-Bellevue Square.csv
+│   ├── Apple-Southcenter.csv
+│   └── Apple-University Village.csv
+├── Program.cs             # Main application entry point
+├── deploy.ps1            # Automated deployment script
+└── README.md             # This file
+```
+
+## 🔧 Setup
+
+### Prerequisites
 - .NET 8.0 SDK
-- Azure Cosmos DB account
-- CSV files in the `Datasets` folder following the naming pattern: `Apple-{Location}.csv`
+- Azure subscription
+- Azure Cognitive Services account
+- OpenAI API key
+- Cosmos DB account
 
-## Setup
+### Configuration
+1. Copy `appsettings.template.json` to `appsettings.json`
+2. Add your API keys to `appsettings.json`
+3. For Azure deployment, set environment variables in Azure App Service
 
-1. **Configure Azure Cosmos DB Connection**
-   - Open `appsettings.json`
-   - Replace `YOUR_COSMOS_DB_CONNECTION_STRING_HERE` with your actual Cosmos DB connection string
-   - Optionally modify the database and container names
+## 🚀 Deployment
 
-2. **Prepare CSV Files**
-   - Place your CSV files in the `Datasets` folder
-   - Ensure files follow the naming pattern: `Apple-{Location}.csv`
-   - CSV files should have the following columns:
-     - Review date
-     - Author name
-     - Star rating
-     - Review content
-
-3. **Install Dependencies**
-   ```bash
-   dotnet restore
-   ```
-
-4. **Run the Application**
-   ```bash
-   dotnet run
-   ```
-
-## Configuration
-
-The application uses the following configuration in `appsettings.json`:
-
-```json
-{
-  "CosmosDb": {
-    "ConnectionString": "YOUR_COSMOS_DB_CONNECTION_STRING_HERE",
-    "DatabaseId": "SentimentAnalysisDB",
-    "ContainerId": "Reviews"
-  },
-  "Datasets": {
-    "Path": "Datasets"
-  }
-}
+### Automated Deployment
+```powershell
+powershell -ExecutionPolicy Bypass -File deploy.ps1
 ```
 
-## Data Structure
+### Manual Deployment
+1. Build: `dotnet publish SentimentAnalysis.csproj -c Release -o ./publish`
+2. Create ZIP: `Compress-Archive -Path ./publish/* -DestinationPath deploy.zip -Force`
+3. Upload to Azure Portal → Deployment Center
 
-The application stores data in Cosmos DB with the following structure:
+## 🌐 Live Application
 
-```json
-{
-  "id": "unique-guid",
-  "reviewDate": "9/3/2025",
-  "authorName": "Nick Ar",
-  "starRating": 1,
-  "reviewContent": "Review text...",
-  "location": "Alderwood",
-  "partitionKey": "Alderwood"
-}
+**URL**: https://sentiment-analysis-ryan-20241215.azurewebsites.net
+
+## 📊 Analysis Methods
+
+### 1. Azure Only
+- Traditional sentiment analysis
+- Opinion mining
+- Aggregated statistics
+
+### 2. ChatGPT Only
+- AI-powered analysis
+- Detailed insights
+- Natural language summaries
+
+### 3. Hybrid
+- Combines Azure aggregates with ChatGPT summaries
+- Best of both approaches
+
+## 🔐 Security
+
+- API keys stored as environment variables
+- No secrets in source code
+- Secure configuration management
+
+## 📝 Usage
+
+1. Visit the web application
+2. Select a location from the dropdown
+3. Choose analysis method (ChatGPT, Azure, or Hybrid)
+4. View results and insights
+
+## 🛠️ Development
+
+### Local Development
+```bash
+dotnet run
 ```
 
-## Location Extraction
+### Testing
+- Navigate to `http://localhost:5001`
+- Test with sample data in `Datasets/` folder
 
-The application extracts location information from filenames using the pattern `Apple-{Location}.csv`:
-- `Apple-Alderwood.csv` → Location: "Alderwood"
-- `Apple-Bellevue Square.csv` → Location: "Bellevue Square"
-- `Apple-Southcenter.csv` → Location: "Southcenter"
-- `Apple-University Village.csv` → Location: "University Village"
+## 📈 Performance
 
-## Error Handling
-
-- Invalid CSV files are logged and skipped
-- Duplicate records are handled with upsert operations
-- Network issues are retried automatically
-- Comprehensive logging for troubleshooting
-
-## Logging
-
-The application provides detailed logging including:
-- File processing progress
-- Data parsing statistics
-- Cosmos DB operations
-- Error details and stack traces
+- Handles large datasets efficiently
+- Implements data filtering (last 12 months, max 1000 reviews)
+- Optimized for production workloads
