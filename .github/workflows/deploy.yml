@@ -27,9 +27,15 @@ jobs:
     - name: Publish for Linux
       run: dotnet publish --configuration Release --no-build --output ./publish --runtime linux-x64 --self-contained false
       
+    - name: Login to Azure
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B024A65E78C946CEB5489E3211048635 }}
+        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9C7931D652AA42A2854B4D283E358777 }}
+        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CC0010FCFC2E40B898662F97EE85FB15 }}
+        
     - name: Deploy to Azure App Service
       uses: azure/webapps-deploy@v3
       with:
         app-name: sentiment-analysis-ryan-20241215
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ./publish
