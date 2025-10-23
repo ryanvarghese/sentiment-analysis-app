@@ -27,6 +27,16 @@ jobs:
     - name: Publish for Linux
       run: dotnet publish SentimentAnalysis.csproj --configuration Release --no-build --output ./publish --runtime linux-x64 --self-contained false
       
+    - name: Clean up publish folder
+      run: |
+        # Remove any nested publish folders
+        find ./publish -name "publish" -type d -exec rm -rf {} + 2>/dev/null || true
+        # Remove Windows-specific files
+        find ./publish -name "*.exe" -delete
+        find ./publish -name "*.pdb" -delete
+        # Ensure proper file permissions
+        chmod +x ./publish/SentimentAnalysis.dll || true
+      
     - name: Login to Azure
       uses: azure/login@v2
       with:
