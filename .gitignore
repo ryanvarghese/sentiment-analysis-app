@@ -61,3 +61,15 @@ Thumbs.db
 
 # Temporary files
 temp-extract/
+temp/
+tmp/
+
+# Deployment artifacts
+*.zip
+publish-profile*.xml
+deploy-*.zip
+
+# Build artifacts
+bin/
+obj/
+publish/
