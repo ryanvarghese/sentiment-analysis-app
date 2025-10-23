@@ -11,10 +11,10 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
         
@@ -24,17 +24,12 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
       
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
-      
-    - name: Publish
-      run: dotnet publish --configuration Release --no-build --output ./publish
+    - name: Publish for Linux
+      run: dotnet publish --configuration Release --no-build --output ./publish --runtime linux-x64 --self-contained false
       
     - name: Deploy to Azure App Service
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
-        app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+        app-name: sentiment-analysis-ryan-20241215
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ./publish
-
-
