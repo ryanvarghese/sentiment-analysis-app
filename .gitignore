@@ -28,7 +28,7 @@ artifacts/
 # Azure Functions
 bin
 obj
-appsettings.json
+# appsettings.json
 local.settings.json
 
 # Environment variables
@@ -37,9 +37,9 @@ local.settings.json
 .env.production
 
 # Secrets
-appsettings.Production.json
+# appsettings.Production.json
 appsettings.Development.json
-appsettings.json
+# appsettings.json
 secrets.json
 
 # Deployment files
@@ -68,6 +68,10 @@ tmp/
 *.zip
 publish-profile*.xml
 deploy-*.zip
+
+# Local configuration files with secrets
+appsettings.Local.json
+appsettings.*.Local.json
 
 # Build artifacts
 bin/
