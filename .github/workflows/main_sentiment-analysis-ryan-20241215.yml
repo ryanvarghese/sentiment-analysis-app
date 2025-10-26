@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build SentimentAnalysis.csproj --configuration Release
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish SentimentAnalysis.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -51,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B024A65E78C946CEB5489E3211048635 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CC0010FCFC2E40B898662F97EE85FB15 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9C7931D652AA42A2854B4D283E358777 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8A163B7EB2664B6085BC1BBF9FA644CF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_282C4D0AFE814AADAF4AA385F3AE4D09 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_DEC7FA0483554DF392CCDE5B0433E0F2 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
