@@ -2,6 +2,8 @@
 
 A comprehensive sentiment analysis application that combines Azure Cognitive Services with ChatGPT for advanced review analysis.
 
+🚀 **CI/CD Pipeline Active!** - Automated deployment to Azure App Service.
+
 ## 🚀 Features
 
 - **Azure Sentiment Analysis**: Traditional sentiment analysis using Azure Cognitive Services
