@@ -1,11 +1,8 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentAnalysis", "SentimentAnalysis.csproj", "{CC8EF67E-46A9-42BB-A576-8FC375064AAB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentimentWebUI", "SentimentWebUI\SentimentWebUI.csproj", "{19C8D1EB-531D-426F-9BDB-7318863E810A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +17,5 @@ Global
 		{CC8EF67E-46A9-42BB-A576-8FC375064AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC8EF67E-46A9-42BB-A576-8FC375064AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC8EF67E-46A9-42BB-A576-8FC375064AAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19C8D1EB-531D-426F-9BDB-7318863E810A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19C8D1EB-531D-426F-9BDB-7318863E810A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19C8D1EB-531D-426F-9BDB-7318863E810A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19C8D1EB-531D-426F-9BDB-7318863E810A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

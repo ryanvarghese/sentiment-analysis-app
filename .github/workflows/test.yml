@@ -23,13 +23,13 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
         
     - name: Restore dependencies
-      run: dotnet restore SentimentAnalysisSolution.sln
+      run: dotnet restore SentimentAnalysis.csproj
       
     - name: Build
-      run: dotnet build SentimentAnalysisSolution.sln --configuration Release --no-restore
+      run: dotnet build SentimentAnalysis.csproj --configuration Release --no-restore
       
     - name: Test
-      run: dotnet test SentimentAnalysisSolution.sln --configuration Release --no-build --verbosity normal
+      run: dotnet test SentimentAnalysis.csproj --configuration Release --no-build --verbosity normal
       continue-on-error: true
       
     - name: Publish (for validation)
