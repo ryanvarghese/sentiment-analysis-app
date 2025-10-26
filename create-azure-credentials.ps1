@@ -16,13 +16,13 @@ Write-Host "✅ Logged in to Azure" -ForegroundColor Green
 
 # Get subscription info
 Write-Host "`n2. Getting subscription information..." -ForegroundColor Yellow
-$subscription = az account show --query "{subscriptionId:id, subscriptionName:name}" -o json | ConvertFrom-Json
+$subscription = az account show --query '{"subscriptionId":"id","subscriptionName":"name"}' -o json | ConvertFrom-Json
 Write-Host "Subscription: $($subscription.subscriptionName)" -ForegroundColor Cyan
 Write-Host "Subscription ID: $($subscription.subscriptionId)" -ForegroundColor Cyan
 
 # Get resource group (you'll need to specify this)
 Write-Host "`n3. Getting resource groups..." -ForegroundColor Yellow
-$resourceGroups = az group list --query "[].{Name:name, Location:location}" -o table
+$resourceGroups = az group list --query '[].{"Name":"name","Location":"location"}' -o table
 Write-Host $resourceGroups
 
 $resourceGroupName = Read-Host "`nEnter the resource group name where your App Service is located"
