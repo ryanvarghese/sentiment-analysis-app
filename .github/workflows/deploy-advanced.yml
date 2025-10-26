@@ -1,11 +1,12 @@
-name: Build and Deploy to Azure App Service (Advanced)
+# DISABLED - Using main_sentiment-analysis-ryan-20241215.yml instead
+# name: Build and Deploy to Azure App Service (Advanced)
 
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-  workflow_dispatch:
+# on:
+#   push:
+#     branches: [ main, master ]
+#   pull_request:
+#     branches: [ main, master ]
+#   workflow_dispatch:
 
 env:
   AZURE_WEBAPP_NAME: sentiment-analysis-ryan-20241215-ezgkezdjfsdpf8by

@@ -1,0 +1,5 @@
+<publishData>
+<publishProfile profileName="sentiment-analysis-ryan-20241215 - Zip Deploy" publishMethod="ZipDeploy" publishUrl="sentiment-analysis-ryan-20241215-ezgkezdjfsdpf8by.scm.eastus-01.azurewebsites.net:443" userName="REDACTED" userPWD="REDACTED" destinationAppUrl="https://sentiment-analysis-ryan-20241215-ezgkezdjfsdpf8by.eastus-01.azurewebsites.net" SQLServerDBConnectionString="REDACTED" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="https://portal.azure.com" webSystem="WebSites">
+<databases />
+</publishProfile>
+</publishData>

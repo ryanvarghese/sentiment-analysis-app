@@ -1,10 +1,11 @@
-name: Test and Build
+# DISABLED - Using main_sentiment-analysis-ryan-20241215.yml instead
+# name: Test and Build
 
-on:
-  push:
-    branches: [ main, master, develop ]
-  pull_request:
-    branches: [ main, master ]
+# on:
+#   push:
+#     branches: [ main, master, develop ]
+#   pull_request:
+#     branches: [ main, master ]
 
 env:
   DOTNET_VERSION: '8.0.x'
