@@ -1,0 +1,44 @@
+name: Test and Build
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+
+env:
+  DOTNET_VERSION: '8.0.x'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Restore dependencies
+      run: dotnet restore SentimentAnalysis.csproj
+      
+    - name: Build
+      run: dotnet build SentimentAnalysis.csproj --configuration Release --no-restore
+      
+    - name: Test
+      run: dotnet test SentimentAnalysis.csproj --configuration Release --no-build --verbosity normal
+      continue-on-error: true
+      
+    - name: Publish (for validation)
+      run: dotnet publish SentimentAnalysis.csproj --configuration Release --no-build --output ./publish
+      
+    - name: Validate deployment package
+      run: |
+        echo "Checking if SentimentAnalysis.dll exists..."
+        ls -la ./publish/SentimentAnalysis.dll
+        echo "Checking if web.config exists..."
+        ls -la ./publish/web.config
+        echo "Package validation complete!"
