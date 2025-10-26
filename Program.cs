@@ -109,6 +109,9 @@ app.MapGet("/", async (HttpContext context, ICosmosDbService cosmos) =>
     sb.Append("a{color:#2563eb;text-decoration:none}");
     sb.Append("</style></head><body>");
     sb.Append("<div class='container'>");
+    sb.Append("<div class='card' style='background:#ff6b6b;color:white;text-align:center;font-weight:bold;'>");
+    sb.Append("🧪 CI/CD TEST - DEPLOYMENT VERIFIED! 🚀");
+    sb.Append("</div>");
     sb.Append("<div class='card'>");
     sb.Append("<h1>Import CSV Data</h1>");
     sb.Append("<p class='muted'>Upload an Apple-Location.csv file to import data into Cosmos DB.</p>");
