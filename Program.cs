@@ -1,4 +1,4 @@
-using Azure;
+﻿using Azure;
 using Azure.AI.TextAnalytics;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -110,7 +110,7 @@ app.MapGet("/", async (HttpContext context, ICosmosDbService cosmos) =>
     sb.Append("</style></head><body>");
     sb.Append("<div class='container'>");
     sb.Append("<div class='card' style='background:#ff6b6b;color:white;text-align:center;font-weight:bold;'>");
-    sb.Append("🧪 CI/CD TEST - DEPLOYMENT VERIFIED! 🚀");
+    sb.Append("âœ… CI/CD TEST SUCCESSFUL - 2025-10-26 20:52:19");
     sb.Append("</div>");
     sb.Append("<div class='card'>");
     sb.Append("<h1>Import CSV Data</h1>");
@@ -237,7 +237,7 @@ app.MapGet("/results", async (HttpRequest request, ICosmosDbService cosmos, ISen
     
     var sentimentClass = summary.OverallSentiment switch { "Positive" => "pos", "Negative" => "neg", _ => "neu" };
     summaryHtml.Append($"<div class='card'><h2 style='margin-top:0'>{System.Net.WebUtility.HtmlEncode(location)} <span class='badge {sentimentClass}'>{summary.OverallSentiment}</span></h2>");
-    summaryHtml.Append($"<p class='muted'>Total Reviews: {summary.TotalReviews} · + {summary.PositiveCount} · - {summary.NegativeCount} · neutral {summary.NeutralCount} · Avg confidence {summary.AverageConfidence:P2}</p>");
+    summaryHtml.Append($"<p class='muted'>Total Reviews: {summary.TotalReviews} Â· + {summary.PositiveCount} Â· - {summary.NegativeCount} Â· neutral {summary.NeutralCount} Â· Avg confidence {summary.AverageConfidence:P2}</p>");
     if (summary.TopPros.Any())
     {
         summaryHtml.Append("<div><strong>Top Pros</strong><div class='list'>" + string.Join("", summary.TopPros.Select(p => $"<span class='chip'>{System.Net.WebUtility.HtmlEncode(p)}</span>")) + "</div></div>");
@@ -304,7 +304,7 @@ app.MapGet("/compare", async (HttpRequest request, ICosmosDbService cosmos, ISen
     // ChatGPT Results Only
     var chatGptSentimentClass = chatGptSummary.OverallSentiment switch { "Positive" => "pos", "Negative" => "neg", _ => "neu" };
     resultsHtml.Append($"<div class='card'><h2>{System.Net.WebUtility.HtmlEncode(location)} <span class='badge {chatGptSentimentClass}'>{chatGptSummary.OverallSentiment}</span></h2>");
-    resultsHtml.Append($"<p class='muted'>Total Reviews: {chatGptSummary.TotalReviews} · + {chatGptSummary.PositiveCount} · - {chatGptSummary.NegativeCount} · neutral {chatGptSummary.NeutralCount} · Avg confidence: {chatGptSummary.AverageConfidence:P1}</p>");
+    resultsHtml.Append($"<p class='muted'>Total Reviews: {chatGptSummary.TotalReviews} Â· + {chatGptSummary.PositiveCount} Â· - {chatGptSummary.NegativeCount} Â· neutral {chatGptSummary.NeutralCount} Â· Avg confidence: {chatGptSummary.AverageConfidence:P1}</p>");
     if (chatGptSummary.TopPros.Any())
     {
         resultsHtml.Append("<div><strong>Top Pros:</strong><div class='list'>" + string.Join("", chatGptSummary.TopPros.Select(p => $"<span class='chip'>{System.Net.WebUtility.HtmlEncode(p)}</span>")) + "</div></div>");
@@ -400,7 +400,7 @@ app.MapGet("/hybrid", async (HttpRequest request, ICosmosDbService cosmos, ISent
 
     var aClass = azureSummary.OverallSentiment switch { "Positive" => "pos", "Negative" => "neg", _ => "neu" };
     sb.Append($"<div class='card'><h2>Azure Aggregates <span class='badge {aClass}'>{azureSummary.OverallSentiment}</span></h2>");
-    sb.Append($"<p class='muted'>Total Reviews: {azureSummary.TotalReviews} · + {azureSummary.PositiveCount} · - {azureSummary.NegativeCount} · neutral {azureSummary.NeutralCount} · Avg confidence {azureSummary.AverageConfidence:P1}</p>");
+    sb.Append($"<p class='muted'>Total Reviews: {azureSummary.TotalReviews} Â· + {azureSummary.PositiveCount} Â· - {azureSummary.NegativeCount} Â· neutral {azureSummary.NeutralCount} Â· Avg confidence {azureSummary.AverageConfidence:P1}</p>");
     if (azureSummary.TopPros.Any()) sb.Append("<div><strong>Top Pros</strong><div class='list'>" + string.Join("", azureSummary.TopPros.Select(p => $"<span class='chip'>{System.Net.WebUtility.HtmlEncode(p)}</span>")) + "</div></div>");
     if (azureSummary.TopCons.Any()) sb.Append("<div style='margin-top:8px'><strong>Top Cons</strong><div class='list'>" + string.Join("", azureSummary.TopCons.Select(p => $"<span class='chip'>{System.Net.WebUtility.HtmlEncode(p)}</span>")) + "</div></div>");
     sb.Append("</div>");
@@ -450,3 +450,4 @@ var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 app.Urls.Add($"http://0.0.0.0:{port}");
 
 app.Run();
+
