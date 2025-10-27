@@ -109,9 +109,6 @@ app.MapGet("/", async (HttpContext context, ICosmosDbService cosmos) =>
     sb.Append("a{color:#2563eb;text-decoration:none}");
     sb.Append("</style></head><body>");
     sb.Append("<div class='container'>");
-    sb.Append("<div class='card' style='background:#ff6b6b;color:white;text-align:center;font-weight:bold;'>");
-    sb.Append("âœ… CI/CD TEST SUCCESSFUL - 2025-10-26 20:52:19");
-    sb.Append("</div>");
     sb.Append("<div class='card'>");
     sb.Append("<h1>Import CSV Data</h1>");
     sb.Append("<p class='muted'>Upload an Apple-Location.csv file to import data into Cosmos DB.</p>");
@@ -450,4 +447,5 @@ var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 app.Urls.Add($"http://0.0.0.0:{port}");
 
 app.Run();
+
 
